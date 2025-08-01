@@ -14,17 +14,20 @@ public class Calender extends BaseEntity{
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String title;
     private String content;
     private String writer;
     private String password;
 
-    public Calender(String content, String writer, String password) {
+    public Calender(String title, String content, String writer, String password) {
+        this.title = title;
         this.content = content;
         this.writer = writer;
         this.password = password;
     }
 
-    public void updateCalenderContent(String content) {
+    public void updateCalenderContent(String title, String content) {
+        this.title = title;
         this.content = content;
     }
 }

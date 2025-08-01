@@ -20,6 +20,7 @@ public class CalenderService {
     @Transactional
     public CalenderResponse save(CalenderRequest calenderRequest) {
         Calender calender = new Calender(
+                calenderRequest.getTitle(),
                 calenderRequest.getContent(),
                 calenderRequest.getWriter(),
                 calenderRequest.getPassword()
@@ -28,6 +29,7 @@ public class CalenderService {
 
         return new CalenderResponse(
                 savedCalender.getId(),
+                savedCalender.getTitle(),
                 savedCalender.getContent(),
                 savedCalender.getWriter(),
                 savedCalender.getCreatedDate(),
@@ -43,6 +45,7 @@ public class CalenderService {
         for (Calender calender : calenders) {
             new CalenderResponse(
                     calender.getId(),
+                    calender.getTitle(),
                     calender.getContent(),
                     calender.getWriter(),
                     calender.getCreatedDate(),
@@ -59,6 +62,7 @@ public class CalenderService {
         );
         return new CalenderResponse(
                         calender.getId(),
+                        calender.getTitle(),
                         calender.getContent(),
                         calender.getWriter(),
                         calender.getCreatedDate(),
@@ -74,9 +78,10 @@ public class CalenderService {
         if(!calender.getPassword().equals(request.getPassword())){
             throw new IllegalStateException("비밀번호가 틀렸네용");
         }
-        calender.updateCalenderContent(request.getContent());
+        calender.updateCalenderContent(request.getTitle(), request.getContent());
         return new CalenderResponse(
                 calender.getId(),
+                calender.getTitle(),
                 calender.getContent(),
                 calender.getWriter(),
                 calender.getCreatedDate(),
