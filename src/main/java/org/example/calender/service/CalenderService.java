@@ -21,7 +21,8 @@ public class CalenderService {
     public CalenderResponse save(CalenderRequest calenderRequest) {
         Calender calender = new Calender(
                 calenderRequest.getContent(),
-                calenderRequest.getWriter()
+                calenderRequest.getWriter(),
+                calenderRequest.getPassword()
         );
         Calender savedCalender = calenderRepository.save(calender);
 
@@ -70,6 +71,9 @@ public class CalenderService {
         Calender calender = calenderRepository.findById(calenderId).orElseThrow(
                 () -> new IllegalArgumentException("입력하신 일정이 없습니다.")
         );
+        if(!calender.getPassword().equals(request.getPassword())){
+            throw new IllegalStateException("비밀번호가 틀렸네용");
+        }
         calender.updateCalenderContent(request.getContent());
         return new CalenderResponse(
                 calender.getId(),
@@ -81,11 +85,16 @@ public class CalenderService {
     }
 
     @Transactional
-    public void deleteCalender(Long calenderId){
-        boolean b = calenderRepository.existsById(calenderId);
-        if(!b) {
-            throw new IllegalStateException("입력하신 일정이 없습니다.");
+    public void deleteCalender(Long calenderId, String password) {
+        Calender calender = calenderRepository.findById(calenderId).orElseThrow(
+                () -> new IllegalArgumentException("입력하신 일정이 없습니다.")
+        );
+
+        if (!calender.getPassword().equals(password)) {
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
         }
-        calenderRepository.deleteById(calenderId);
+
+        calenderRepository.delete(calender);
     }
+
 }

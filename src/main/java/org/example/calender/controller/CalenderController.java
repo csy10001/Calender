@@ -40,7 +40,8 @@ public class CalenderController {
     }
 
     @DeleteMapping("/calenders/{calenderId}")
-    public void deleteCalender(@PathVariable Long calenderId){
-        calenderService.deleteCalender(calenderId);
+    public void deleteCalender(
+            @PathVariable Long calenderId, @RequestParam String password){
+        calenderService.deleteCalender(calenderId, password);
     }
 }

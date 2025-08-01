@@ -6,4 +6,5 @@ import lombok.Getter;
 public class CalenderRequest {
     private String content;
     private String writer;
+    private String password;
 }

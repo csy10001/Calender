@@ -16,10 +16,12 @@ public class Calender extends BaseEntity{
     private Long id;
     private String content;
     private String writer;
+    private String password;
 
-    public Calender(String content, String writer) {
+    public Calender(String content, String writer, String password) {
         this.content = content;
         this.writer = writer;
+        this.password = password;
     }
 
     public void updateCalenderContent(String content) {
