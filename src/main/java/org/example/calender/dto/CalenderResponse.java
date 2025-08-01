@@ -9,12 +9,14 @@ import java.time.LocalDateTime;
 public class CalenderResponse {
     private final Long id;
     private final String content;
+    private final String writer;
     private final LocalDateTime createdAt;
     private final LocalDateTime modifiedAt;
 
-    public CalenderResponse(Long id, String content, LocalDateTime createdAt , LocalDateTime modifiedAt) {
+    public CalenderResponse(Long id, String content, String writer,LocalDateTime createdAt , LocalDateTime modifiedAt) {
         this.id = id;
         this.content = content;
+        this.writer = writer;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
     }

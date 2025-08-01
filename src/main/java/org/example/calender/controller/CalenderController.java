@@ -3,7 +3,6 @@ package org.example.calender.controller;
 import lombok.RequiredArgsConstructor;
 import org.example.calender.dto.CalenderRequest;
 import org.example.calender.dto.CalenderResponse;
-import org.example.calender.entity.Calender;
 import org.example.calender.service.CalenderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

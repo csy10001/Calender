@@ -5,4 +5,5 @@ import lombok.Getter;
 @Getter
 public class CalenderRequest {
     private String content;
+    private String writer;
 }

@@ -19,12 +19,16 @@ public class CalenderService {
 
     @Transactional
     public CalenderResponse save(CalenderRequest calenderRequest) {
-        Calender calender = new Calender(calenderRequest.getContent());
+        Calender calender = new Calender(
+                calenderRequest.getContent(),
+                calenderRequest.getWriter()
+        );
         Calender savedCalender = calenderRepository.save(calender);
 
         return new CalenderResponse(
                 savedCalender.getId(),
                 savedCalender.getContent(),
+                savedCalender.getWriter(),
                 savedCalender.getCreatedDate(),
                 savedCalender.getModifiedAt()
         );
@@ -39,6 +43,7 @@ public class CalenderService {
             new CalenderResponse(
                     calender.getId(),
                     calender.getContent(),
+                    calender.getWriter(),
                     calender.getCreatedDate(),
                     calender.getModifiedAt()
             );
@@ -54,6 +59,7 @@ public class CalenderService {
         return new CalenderResponse(
                         calender.getId(),
                         calender.getContent(),
+                        calender.getWriter(),
                         calender.getCreatedDate(),
                         calender.getModifiedAt()
                 );
@@ -68,6 +74,7 @@ public class CalenderService {
         return new CalenderResponse(
                 calender.getId(),
                 calender.getContent(),
+                calender.getWriter(),
                 calender.getCreatedDate(),
                 calender.getModifiedAt()
         );

@@ -15,9 +15,11 @@ public class Calender extends BaseEntity{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String content;
+    private String writer;
 
-    public Calender(String content) {
+    public Calender(String content, String writer) {
         this.content = content;
+        this.writer = writer;
     }
 
     public void updateCalenderContent(String content) {
